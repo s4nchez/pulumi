@@ -58,3 +58,6 @@ type PreviewResult struct {
 
 - [automation/dotnet] Add ReadDiscard OperationType
   [#6493](https://github.com/pulumi/pulumi/pull/6493)
+
+- [sdk/nodejs] Fix `Construct` to wait for child resources of a multi-lang components to be created.
+  [#6452](https://github.com/pulumi/pulumi/pull/6452)
