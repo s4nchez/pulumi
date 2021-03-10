@@ -59,6 +59,8 @@ This change is marked breaking because it also renames `OnOutput` to `OnStandard
 - [cli] Add locking support to the self-managed backends using the `PULUMI_SELF_MANAGED_STATE_LOCKING=1` environment variable.
   [#2697](https://github.com/pulumi/pulumi/pull/2697)
 
+- [automation/python] - Expose structured logging for Stack.up/preview/refresh/destroy.
+
 ### Bug Fixes
 
 - [sdk/python] Fix mocks issue when passing a resource more than once.
