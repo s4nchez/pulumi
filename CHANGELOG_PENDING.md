@@ -51,6 +51,9 @@ type PreviewResult struct {
 - [automation/nodejs] - Add `onOutput` event handler to `PreviewOptions`.
   [#6507](https://github.com/pulumi/pulumi/pull/6507)
 
+- [sdk/nodejs] Allow prompt values in `construct` for multi-lang components.
+  [#6522](https://github.com/pulumi/pulumi/pull/6522)
+
 ### Bug Fixes
 
 - [sdk/python] Fix mocks issue when passing a resource more than once.
