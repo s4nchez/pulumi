@@ -286,6 +286,7 @@ func LoadProject(path string) (*Project, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("\nMarshallerForPath:\n%#v\n", m)
 
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -297,6 +298,7 @@ func LoadProject(path string) (*Project, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("\nProject (before AST):\n%#v\n", proj)
 
 	proj.FileAST, err = encoding.NewFileAST(b)
 	if err != nil {
