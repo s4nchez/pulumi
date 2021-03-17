@@ -514,6 +514,9 @@ namespace Pulumi.Automation
             var plaintextResult = await this.RunCommandAsync(new[] { "stack", "output", "--json", "--show-secrets" }, null, null, cancellationToken).ConfigureAwait(false);
             var jsonOptions = LocalSerializer.BuildJsonSerializerOptions();
 
+            Console.WriteLine("***Result in GetOutputAsync");
+            Console.WriteLine(maskedResult.StandardOutput);
+            Console.WriteLine("***End Result in GetOutputAsync");
             var maskedOutput = string.IsNullOrWhiteSpace(maskedResult.StandardOutput)
                 ? new Dictionary<string, object>()
                 : JsonSerializer.Deserialize<Dictionary<string, object>>(maskedResult.StandardOutput, jsonOptions);
