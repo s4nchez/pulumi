@@ -1,6 +1,7 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.20'
     id 'java-library'
+    id 'com.google.protobuf' version '0.8.13'
 }
 
 repositories {
@@ -10,7 +11,44 @@ repositories {
 dependencies {
     implementation platform('org.jetbrains.kotlin:kotlin-bom')
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+
+    implementation "javax.annotation:javax.annotation-api:1.3.2"
     implementation 'com.google.guava:guava:29.0-jre'
+    implementation "com.google.protobuf:protobuf-java:3.9.0"
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+}
+
+sourceSets {
+    main {
+        proto {
+            srcDir '../proto'
+        }
+    }
+}
+
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:3.9.0"}
+    generatedFilesBaseDir = "$projectDir/src/main/java/generated"
+
+    plugins {
+        kroto {
+            artifact = "com.github.marcoferrer.krotoplus:protoc-gen-kroto-plus:0.6.1"
+        }
+    }
+
+    generateProtoTasks {
+        def krotoConfig = file("krotoPlusConfig.yaml") // Or .json
+
+        all().each{ task ->
+            task.inputs.files krotoConfig
+
+            task.plugins {
+                kroto {
+                    outputSubDir = "java"
+                    option "ConfigPath=$krotoConfig"
+                }
+            }
+        }
+    }
 }
